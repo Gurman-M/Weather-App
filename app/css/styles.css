@@ -41,8 +41,8 @@ p {
 
 #box{
 	margin:auto;
-    width: 30%;
+	width: 30%;
 	padding:10px;
-    background:floralwhite;
-    border-radius: 25px;
+    	background:floralwhite;
+    	border-radius: 25px;
 }
