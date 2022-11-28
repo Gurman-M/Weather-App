@@ -1,0 +1,48 @@
+.center {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.text-box-center {
+    margin: auto;
+    text-align: center;
+    border-style: solid;
+}
+
+@font-face {
+    font-family: cornerofthesky;
+    src: url(KGCorneroftheSky.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: spacetime;
+    src: url(spacetime-regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: poke;
+    src: url(pokemon-classic.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: pixel-title;
+    src: url(pixel-title.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: disco;
+    src: url(DigitalDisco.ttf) format("truetype");
+}
+
+p {
+    font-family: cornerofthesky;
+}
+
+#box{
+	margin:auto;
+    width: 30%;
+	padding:10px;
+    background:floralwhite;
+    border-radius: 25px;
+}
