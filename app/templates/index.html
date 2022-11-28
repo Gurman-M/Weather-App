@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='css/favicon.png') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+        <title>Weather App</title>
+    </head>
+<meta charset="UTF-8">
+
+<style type="text/css">
+    input{
+        margin: auto;
+        width:220px;
+        height:35px;
+        display:block;
+    }
+
+    body {
+        background-image: url("{{ url_for('static', filename='css/weather-bg.png') }}");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+</style>
+
+<body>
+    <script src="weather.py"></script>
+    <div class="center">
+        <form action="{{ url_for('find_weather') }}" method="post">
+            <br><br><br><br>
+
+            <h1 style="font-family: pixel-title; font-size: 55px;">Weather App</h1>
+            <h2 style="font-family: cornerofthesky; font-size: 30px;"><label for="cityInput" class="center">Enter The Name of Your City Here</label></h2>
+            <input class="text-box-center" type="text" id="cityInput" name="cityname" style="font-family: poke;">
+            <br><br>
+            <input type="submit" value="Find Weather" style="font-family: cornerofthesky;">
+        </form>
+    </div>
+
+</body>
+</html>
