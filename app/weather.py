@@ -28,26 +28,32 @@ def check_city(city_name):
         # city name is invalid
         return False
 
+# converts kelvin data to celsius and fahrenheit
 def kelvin_to_c_f(kelvin):
     c = kelvin - 273.15
     f = c * (9/5) + 32
     return c, f
 
+# makes HTTP requests to Weather API for weather data
 def weather_request(cityname):
     CITY = cityname
-
+    
+    # verifies that the city actually exists
     city_check = check_city(CITY)
-
+    
+    # this file is not included in repo
     api_file = open("app/api_key.txt", "r")
     API_KEY = api_file.read()
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather?"
 
+    # crafts the url to make HTTP request
     url = BASE_URL + "lat=" + str(city_check[0]) + "&lon=" + str(city_check[1]) + "&appid=" + API_KEY
 
     if (city_check[0] != None):
         # makes HTTP call to API using url and gets back json
         response = requests.get(url).json()
-
+        
+        # gets back data from Weather API JSON request
         general_weather = response['weather'][0]['main']
         temp_k = response['main']['temp']
         temp_c = kelvin_to_c_f(float(temp_k))[0]
@@ -57,7 +63,7 @@ def weather_request(cityname):
         feelslike_f = kelvin_to_c_f(float(feelslike_k))[1]
         country = response['sys']['country']
         city_location = response['name']
-
+        
         return f"{temp_c:.2f}" + " °C", f"{temp_f:.2f}" + " °F", f"{feelslike_c:.2f}" + " °C", f"{feelslike_f:.2f}" + " °F", f"{general_weather}", f"{country}", f"{city_location}"
     else:
         return None
@@ -65,14 +71,17 @@ def weather_request(cityname):
     api_file.close()
 
 def main():
+    # initializes flask app
     app = Flask(__name__, static_folder='static')
-
+    
     app.static_folder = 'static'
-
+    
+    # redirects user to home page for every route
     @app.route("/")
     def home():
         return render_template("index.html")
-
+    
+    # route to display all weather data received in python
     @app.route("/find_weather", methods=["POST", "GET"])
     def find_weather():
         cityname = request.form["cityname"]
